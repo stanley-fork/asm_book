@@ -107,7 +107,7 @@ into a terminal and follow directions. Note that `gdb` is replaced by
 Then you'll need your favorite editor. We ourselves use `vi` for quick
 edits and Visual Studio Code for any heavy lifting.
 
-### How to build an assembly language
+### How to build an assembly language program
 
 We use `gcc`, the C "compiler". `g++` could also be used. On the Mac,
 `clang` can also be used.
@@ -385,6 +385,15 @@ ISAs (in chronological order):
 * ARM beginning with AARCH64
 
 This work is dedicated to my wife Sara and sons Ian and Evan.
+
+### A Note on Authorship and AI Assistance
+
+As of 19 April 2026, Perry has begun using Claude (Anthropic's AI
+assistant) as a writing and editing aid on this book. All material
+preceding that date was produced by the author unaided. Ongoing
+AI-assisted changes are identifiable in the git history by commit
+date and by the supporting tooling introduced in [`scripts/`](./scripts/)
+and [`.github/`](./.github/) around that time.
 
 ### Gratuitous Plugs
 
