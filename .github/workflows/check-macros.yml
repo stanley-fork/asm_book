@@ -1,0 +1,41 @@
+# check-macros.yml
+#
+# Verifies that every chapter-level copy of a macro file is byte-identical
+# to its canonical version in macros/. Runs scripts/sync-macros.sh and
+# fails the job if the script produced any change that was not already
+# committed.
+#
+# Rationale: the repo ships one copy of each macro file per chapter so
+# that each chapter directory remains self-contained on GitHub. Those
+# copies are derived artifacts; macros/*.S is the single source of
+# truth. This check turns "copies are in sync" from a convention into
+# a machine-enforced invariant, so drift cannot sneak into main.
+#
+# To fix a failure locally:
+#     ./scripts/sync-macros.sh
+#     git add -u
+#     git commit --amend --no-edit    # or a new commit, whichever you prefer
+
+name: Check macro sync
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check-macros:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run sync script
+        run: ./scripts/sync-macros.sh
+
+      - name: Fail if any chapter copy drifted from canonical
+        run: |
+          if ! git diff --exit-code; then
+            echo "::error::Chapter macro copies drifted from the canonical files in macros/."
+            echo "::error::Run ./scripts/sync-macros.sh locally and commit the result."
+            exit 1
+          fi

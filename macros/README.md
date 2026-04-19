@@ -6,6 +6,28 @@ on Apple Silicon and Linux machines without change.
 
 The work is ongoing and subject to change.
 
+## Source of truth
+
+The files in this directory (`macros/*.S`) are the **canonical**
+versions of the macros. Every chapter directory that demonstrates
+assembly code keeps a copy of `apple-linux-convergence.S` alongside
+its sources, so that a reader browsing or downloading a single
+chapter on GitHub has the macros sitting right next to the `.S`
+files that use them.
+
+Those chapter-level copies are **derived artifacts**. Do not edit
+them. Edit the file here in `macros/`, then run:
+
+```
+./scripts/sync-macros.sh
+```
+
+from the repository root to propagate the change to every chapter
+copy. A GitHub Actions job (`.github/workflows/check-macros.yml`)
+re-runs the sync script on every push and pull request and fails
+the build if any copy has drifted from canonical, so this invariant
+cannot silently break.
+
 There are limits to what these macros can do. Variadic functions such as
 `printf()` must be handled via parallel code paths (i.e. use of `#if`).
 
