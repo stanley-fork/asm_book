@@ -11,9 +11,9 @@ We drive home a very sharp point:
 <center>
    <i>Assembly language is nothing to be scared of!</i>
 </center>
-</br>
+<br/>
 
-</br>
+<br/>
 
 <h2>
     <a href="#table-of-contents">
@@ -62,7 +62,7 @@ we call `write` from the assembly language.
 
 This version of the system call `write` is a wrapper function built into
 the C-runtime (CRT) which handles the lower level details of performing
-a system call. See the [here](./more/system_calls/README.md) on what
+a system call. See [this chapter](./more/system_calls/README.md) for what
 actually happens inside these wrapper functions.
 
 The benefit of using the CRT wrappers is that there are differences
@@ -83,13 +83,13 @@ documentation in general. It really can be maddening.
 
 Within the text we will provide germane links as appropriate.
 
-[Here](<https://developer.arm.com/documentation/ddi0596/2021-12?lang=en>)
+[Here](https://developer.arm.com/documentation/ddi0596/2021-12?lang=en)
 is a link to "a" main instruction set page.
 
 ### What you need to work with assembly language on Linux
 
-Getting the tools for assembly language development is quite straight
-forward - perhaps you already have them. Using `apt` from the Linux
+Getting the tools for assembly language development is quite
+straightforward - perhaps you already have them. Using `apt` from the Linux
 terminal, say:
 
 ```text
@@ -128,20 +128,21 @@ to only one step in a build sequence. What we talk about as being the
   if your file ends in a lower case s or any other file extension
   depending upon your system.
 
-* The *actual* compiler, whose job it is turn high level languages
+* The *actual* compiler, whose job it is to turn high level languages
   such as C and C++ into assembly language.
 
 * The assembler, which turns assembly language into machine code which
   is not quite ready for execution.
 
 * And finally, the linker, which combines potentially many intermediate
-  machine code files (called object files), potentially many library
-  files (statically linked .dlls on Windows and .a files on Linux). The
-  linker is the last step in this chain.
+  machine code files (called object files) with potentially many library
+  files (statically linked `.a` files on Linux or `.lib` files on
+  Windows; dynamically linked `.so` files on Linux or `.dll` files on
+  Windows). The linker is the last step in this chain.
 
 [Here](https://youtu.be/Iv3psS4n9j8) is a video explaining this process.
 
-We use gcc and g++ directly because, being umbrellas, they automate
+We use `gcc` and `g++` directly because, being umbrellas, they automate
 the above steps and automatically link with the CRT.
 
 Suppose you've implemented `main()` in a C file (main.c) and want to
@@ -171,7 +172,7 @@ method, the `.o` files are removed without you seeing them.
 
 ### If there are no C or C++ modules used
 
-Suppose `main()` is implemented in assembly language and `main.s` is
+Suppose `main()` is implemented in assembly language and `main.S` is
 self-contained, then simply:
 
 ```text
@@ -187,15 +188,15 @@ gcc -g main.S
 Without the `-g` command line option, your debugger may not properly
 operate.
 
-#### The C Pre-Processor
+#### The C Preprocessor
 
 To repeat, if you want `gcc` to run your code through the C
-pre-processor (for handing `#include` for example), name your assembly
+preprocessor (for handling `#include` for example), name your assembly
 language source code files with a capital S. So, on Linux:
 
 `gcc main.s`
 
-Will not go through the C pre-processor but
+Will not go through the C preprocessor but
 
 `gcc main.S`
 
@@ -215,7 +216,7 @@ on ARM:
 /usr/bin/ld
 ```
 
-`cpp` is the C preprocessor - it is a general tool can is used by other
+`cpp` is the C preprocessor - it is a general tool used by other
 languages as well (C++, for example).
 
 `cc1` is the actual compiler.
@@ -367,9 +368,24 @@ for his invention of Shape Driven Warping and Morphing. This is the
 technique responsible for many of the famous effects in Forrest Gump,
 Titanic and Stargate.
 
-Twenty twenty three marks Perry's 19th year teaching Computer Science at
-the college level, ten years at the UW Madison and now 8+ at Carthage
-College.
+Perry retired from college teaching after nineteen years — ten at UW
+Madison and nine at Carthage College.
+
+Perry's early career ran deep in Unix and the Amiga. As an undergraduate
+he read the V6 Unix kernel from source on a PDP-11/60; he later taught
+Unix internals at Bell Labs. He wrote what is believed to be the first
+software keylogger. In 1985 his work appeared on Fred Fish Disk #1 —
+the first volume of the longest-running public-domain software library
+in personal-computing history. His commercial work through **ASDG**,
+**TAD**, **ADPro**, and **Elastic Reality** centered on a "Loaders →
+Operators → Savers" pipeline architecture he invented and carried
+through five product generations across desktop publishing, multimedia,
+video, and film. The same architecture has most recently evolved into
+a **Sensor → Operator → Emitter (SOE)** pipeline in his current
+open-source project **GlowUp**
+([github.com/pkivolowitz/lifx](https://github.com/pkivolowitz/lifx)) —
+a generalized sensor-fusion and effectuation platform that began as
+smart-lighting control and now runs an ever-growing share of his home.
 
 Assembly language is a passion for Perry having worked in the following
 ISAs (in chronological order):
