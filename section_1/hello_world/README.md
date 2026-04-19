@@ -798,10 +798,12 @@ MAIN                                                        // 7
         .end                                                // 24 
 ```
 
-The push and pop macros simply save typing but the other macros sense
-if you are building on Linux or on Apple M family. In this case, the
-macros are helping with underscores but the macro suite contains more
-sophisticated helpers as well.
+The push and pop macros simply save typing, continuing the `stp` /
+`str` (store pair / store register) naming you've already seen: the
+`_P` suffix takes a register pair, the `_R` suffix takes a single
+register. The other macros sense if you are building on Linux or on
+Apple M family. In this case, the macros are helping with underscores
+but the macro suite contains more sophisticated helpers as well.
 
 ## Questions
 
