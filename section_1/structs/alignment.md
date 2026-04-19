@@ -58,6 +58,18 @@ stinkin' rules.
 
 If they don't mind writing code that's buggy, that is.
 
+## A Note on Hex Dumps
+
+The hex dumps shown in the examples that follow use the
+default `hexdump(1)` output format: bytes are grouped into
+16-bit *little endian* words, and each word is printed with
+its most significant byte first. A byte-oriented tool such
+as `xxd` or `hexdump -C` displays the raw bytes in memory
+order instead &mdash; the same contents, shown differently.
+If you reproduce these examples with `xxd`, expect the bytes
+within each pair to appear swapped relative to what is shown
+here.
+
 ## Example 1
 
 ```c
